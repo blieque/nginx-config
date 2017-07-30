@@ -1,0 +1,35 @@
+# http to https
+server {
+    server_name example.com www.example.com;
+    return 301 https://example.com$request_uri;
+}
+
+# www to non-www for https
+server {
+    server_name example.com www.example.com;
+    return 301 https://example.com$request_uri;
+
+    include snippets/ssl-common.conf;
+    include snippets/ssl-com.example.conf;
+}
+
+# functional server block
+server {
+
+    server_name example.com;
+    root /srv/hosts/com.example.subdomain;
+
+    include snippets/ssl-common-default.conf;
+    include snippets/ssl-com.example.conf;
+
+    include snippets/common.conf;
+
+    # running an app in a directory, with an API (Node.js app, perhaps)
+    rewrite ^/app/contact.html /myworkbus/contact redirect;
+    rewrite ^/app/contact /myworkbus/contact.html;
+    location /app/api/ {
+        include snippets/proxy-common.conf;
+        proxy_pass http://127.0.0.1:3000;
+    }
+
+}
