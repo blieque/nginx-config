@@ -11,5 +11,9 @@ The snippets files in `nginx/snippets` are intended to be included in virtual ho
 - `ssl-common.conf` – Listens on port 443 with HTTP/2. Includes `ssl-common-no-listen.conf`.
 - `ssl-common-default.conf` – Listens on port 443 with HTTP/2, and uses the `default_server` parameter of the `listen` directive. This should only be used for a single `server` block. Includes `ssl-common-no-listen.conf`.
 - `fastcgi-php.conf` – FastCGI configuration for PHP. This includes the parameters distributed with nginx plus a few, and listens on the Unix socket `/run/php/php7.0-fpm.sock`.
-- `http-errors.conf` – Makes 4xx and 5xx HTTP error pages a bit prettier. This will require [http-error-pages](https:/github.com/blieque/http-errr-pages).
+- `http-errors.conf` – Makes 4xx- and 5xx-code HTTP error pages a bit prettier. This will require [http-errors](https:/github.com/blieque/http-errors).
 - `proxy-common.conf` – Configuration for reverse proxying to another server, such as Node.js API.
+
+## License
+
+I've used the same license that nginx itself is distributed by the terms of. This is simply to avoid confusion or any license issues. Submit an issue if this causes a problem.
